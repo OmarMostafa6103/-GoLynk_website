@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GoLynk - توصيل أسرع، أوفر، وأخضر</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Cairo Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+      body {
+        font-family: "Cairo", sans-serif;
+        background-color: #f5f5dc; /* البيج */
+        color: #3e2723; /* البني الداكن */
+        overflow-x: hidden;
+        direction: rtl;
+        text-align: right;
+      }
+
+      .shadow-soft {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05),
+          0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .logo-grayscale {
+        filter: grayscale(100%);
+        transition: filter 0.3s ease;
+      }
+
+      .logo-grayscale:hover {
+        filter: grayscale(0%);
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 1s ease-in-out forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .testimonial-card {
+        display: none;
+        animation: slideIn 0.5s ease-in-out forwards;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .animate-path {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: drawPath 4s ease-in-out forwards;
+      }
+
+      @keyframes drawPath {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      .animate-glowing-node {
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sticky Navbar -->
+    <header
+      id="navbar"
+      class="fixed top-0 z-50 w-full transition-all duration-300 ease-in-out bg-[#F5F5DC]/80 backdrop-blur-sm"
+    >
+      <nav
+        class="container mx-auto flex items-center justify-between p-4 md:p-6 rounded-b-xl"
+      >
+        <!-- Logo -->
+        <div class="flex items-center space-x-2 rtl:space-x-reverse">
+          <span class="text-3xl text-green-700">🌍</span>
+          <span class="text-2xl font-bold">GoLynk</span>
+        </div>
+        <!-- Menu Items -->
+        <div
+          class="hidden md:flex space-x-6 rtl:space-x-reverse text-lg font-semibold"
+        >
+          <a href="#" class="hover:text-green-600 transition duration-300"
+            >الرئيسية</a
+          >
+          <a href="#" class="hover:text-green-600 transition duration-300"
+            >كيف نعمل؟</a
+          >
+          <a href="#" class="hover:text-green-600 transition duration-300"
+            >للأعمال</a
+          >
+          <a href="#" class="hover:text-green-600 transition duration-300"
+            >للمُوصلين</a
+          >
+          <a href="#" class="hover:text-green-600 transition duration-300"
+            >الأسئلة الشائعة</a
+          >
+        </div>
+        <!-- Buttons -->
+        <div class="flex items-center space-x-4 rtl:space-x-reverse">
+          <button
+            class="bg-green-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-green-700 transition duration-300"
+          >
+            أرسل شحنة
+          </button>
+          <button
+            class="border border-green-600 text-green-600 px-6 py-2 rounded-full font-semibold hover:bg-green-100 transition duration-300"
+          >
+            انضم كمُوصل
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pt-24">
+      <!-- Hero Section -->
+      <section
+        class="container mx-auto flex flex-col md:flex-row-reverse items-center justify-between p-4 md:p-8 space-y-8 md:space-y-0 md:space-x-12 rtl:md:space-x-reverse min-h-screen"
+      >
+        <!-- Text Content -->
+        <div class="md:w-1/2 text-center md:text-right animate-fade-in">
+          <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4"
+          >
+            نوصلها معاك — أسرع، أوفر، وأخضر 🌍
+          </h1>
+          <p class="text-lg md:text-xl text-gray-700 mb-8">
+            GoLynk يربط بين المرسلين والمسافرين عبر المواصلات العامة. توصيل ذكي
+            متعدد المحطات يقلل التكلفة والانبعاثات الكربونية.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row justify-center md:justify-end space-y-4 sm:space-y-0 sm:space-x-4 rtl:sm:space-x-reverse"
+          >
+            <button
+              class="bg-green-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-green-700 hover:shadow-xl transition duration-300"
+            >
+              أرسل شحنة الآن
+            </button>
+            <button
+              class="border border-green-600 text-green-600 px-8 py-3 rounded-full font-semibold hover:bg-green-100 transition duration-300"
+            >
+              انضم كمُوصل
+            </button>
+          </div>
+        </div>
+        <!-- Illustration -->
+        <div class="md:w-1/2 relative flex items-center justify-center p-8">
+          <!-- SVG Illustration of eco-friendly city and delivery path -->
+          <svg viewBox="0 0 400 300" class="w-full h-auto">
+            <!-- City Skyline Background -->
+            <rect
+              x="0"
+              y="0"
+              width="400"
+              height="300"
+              fill="#E8F5E9"
+              rx="12"
+            ></rect>
+            <path
+              d="M0 200 L50 150 L100 180 L150 140 L200 160 L250 120 L300 150 L350 110 L400 140"
+              fill="none"
+              stroke="#4CAF50"
+              stroke-width="2"
+              opacity="0.1"
+            ></path>
+            <path
+              d="M0 220 L50 180 L100 210 L150 170 L200 190 L250 150 L300 180 L350 140 L400 170"
+              fill="none"
+              stroke="#4CAF50"
+              stroke-width="2"
+              opacity="0.1"
+            ></path>
+            <!-- Delivery Path -->
+            <path
+              id="hero-path"
+              d="M50 250 Q 150 50, 250 150 T 350 50"
+              stroke="#4CAF50"
+              stroke-width="3"
+              fill="none"
+              class="animate-path"
+            ></path>
+            <!-- Origin and Destination Nodes -->
+            <circle
+              cx="50"
+              cy="250"
+              r="5"
+              fill="#6D4C41"
+              class="animate-glowing-node"
+            ></circle>
+            <circle
+              cx="350"
+              cy="50"
+              r="5"
+              fill="#4CAF50"
+              class="animate-glowing-node"
+            ></circle>
+            <!-- Traveler and Package Icon -->
+            <text
+              x="50"
+              y="250"
+              font-size="20"
+              fill="#3E2723"
+              text-anchor="middle"
+              alignment-baseline="middle"
+              dy="-15"
+            >
+              📦
+            </text>
+            <text
+              x="350"
+              y="50"
+              font-size="20"
+              fill="#3E2723"
+              text-anchor="middle"
+              alignment-baseline="middle"
+              dy="-15"
+            >
+              🏠
+            </text>
+          </svg>
+        </div>
+      </section>
+
+      <!-- Trust / Metrics Strip -->
+      <section class="bg-green-50 py-12">
+        <div
+          class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
+        >
+          <!-- Counter 1 -->
+          <div
+            class="flex flex-col items-center animate-fade-in"
+            style="animation-delay: 0.2s"
+          >
+            <span
+              class="text-4xl font-extrabold text-green-700"
+              id="counter1"
+              data-target="1200"
+              >0</span
+            >
+            <p class="text-lg text-gray-700 mt-2">
+              شحنة ناجحة <span class="text-2xl">📦</span>
+            </p>
+          </div>
+          <!-- Counter 2 -->
+          <div
+            class="flex flex-col items-center animate-fade-in"
+            style="animation-delay: 0.4s"
+          >
+            <span
+              class="text-4xl font-extrabold text-green-700"
+              id="counter2"
+              data-target="85"
+              >0</span
+            >
+            <p class="text-lg text-gray-700 mt-2">
+              انبعاثات أقل <span class="text-2xl">🌱</span>
+            </p>
+          </div>
+          <!-- Counter 3 -->
+          <div
+            class="flex flex-col items-center animate-fade-in"
+            style="animation-delay: 0.6s"
+          >
+            <span
+              class="text-4xl font-extrabold text-green-700"
+              id="counter3"
+              data-target="350"
+              >0</span
+            >
+            <p class="text-lg text-gray-700 mt-2">
+              مُوصل نشط <span class="text-2xl">👤</span>
+            </p>
+          </div>
+        </div>
+        <!-- Partner Logos -->
+        <div
+          class="container mx-auto mt-12 flex flex-wrap items-center justify-center gap-8 md:gap-16 animate-fade-in"
+        >
+          <img
+            src="https://placehold.co/120x60/A0A0A0/FFFFFF?text=Partner"
+            alt="Partner Logo"
+            class="logo-grayscale h-10"
+          />
+          <img
+            src="https://placehold.co/120x60/A0A0A0/FFFFFF?text=Partner"
+            alt="Partner Logo"
+            class="logo-grayscale h-10"
+          />
+          <img
+            src="https://placehold.co/120x60/A0A0A0/FFFFFF?text=Partner"
+            alt="Partner Logo"
+            class="logo-grayscale h-10"
+          />
+          <img
+            src="https://placehold.co/120x60/A0A0A0/FFFFFF?text=Partner"
+            alt="Partner Logo"
+            class="logo-grayscale h-10"
+          />
+        </div>
+      </section>
+
+      <!-- How It Works -->
+      <section class="container mx-auto px-4 py-16">
+        <h2 class="text-4xl font-bold text-center mb-12 animate-fade-in">
+          كيف نعمل؟
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Step 1 -->
+          <div
+            class="bg-white p-6 rounded-2xl shadow-soft text-center card-hover transition duration-300 animate-fade-in"
+            style="animation-delay: 0.2s"
+          >
+            <div
+              class="flex items-center justify-center h-16 w-16 mx-auto mb-4 bg-green-100 rounded-full"
+            >
+              <i data-feather="edit-2" class="text-green-600"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">أنشئ طلبك 📝</h3>
+            <p class="text-gray-600">
+              أدخل تفاصيل شحنتك ومسارها لإنشاء طلب توصيل جديد.
+            </p>
+          </div>
+          <!-- Step 2 -->
+          <div
+            class="bg-white p-6 rounded-2xl shadow-soft text-center card-hover transition duration-300 animate-fade-in"
+            style="animation-delay: 0.4s"
+          >
+            <div
+              class="flex items-center justify-center h-16 w-16 mx-auto mb-4 bg-green-100 rounded-full"
+            >
+              <i data-feather="cpu" class="text-green-600"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+              مطابقة ذكية عبر الذكاء الاصطناعي 🤖
+            </h3>
+            <p class="text-gray-600">
+              نقوم بمطابقة شحنتك تلقائياً مع المُوصلين الأنسب عبر خوارزميات
+              ذكية.
+            </p>
+          </div>
+          <!-- Step 3 -->
+          <div
+            class="bg-white p-6 rounded-2xl shadow-soft text-center card-hover transition duration-300 animate-fade-in"
+            style="animation-delay: 0.6s"
+          >
+            <div
+              class="flex items-center justify-center h-16 w-16 mx-auto mb-4 bg-green-100 rounded-full"
+            >
+              <i data-feather="map-pin" class="text-green-600"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">استلام وتتبع لحظي 📍</h3>
+            <p class="text-gray-600">
+              تابع شحنتك لحظة بلحظة حتى وصولها بسلام إلى وجهتها النهائية.
+            </p>
+          </div>
+        </div>
+        <div class="text-center mt-12 animate-fade-in">
+          <a
+            href="#"
+            class="inline-block border border-green-600 text-green-600 px-8 py-3 rounded-full font-semibold hover:bg-green-100 transition duration-300"
+            >تعرّف أكثر</a
+          >
+        </div>
+      </section>
+
+      <!-- Interactive Visual Section -->
+      <section class="container mx-auto px-4 py-16 text-center">
+        <h2 class="text-4xl font-bold mb-8 animate-fade-in">
+          رحلة توصيل GoLynk
+        </h2>
+        <div class="bg-white p-8 rounded-2xl shadow-soft overflow-hidden">
+          <div class="relative w-full h-80">
+            <div
+              class="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-20"
+              style="
+                background-image: url('https://placehold.co/800x600/F0F4C3/4CAF50?text=Simplified+Map+Background');
+              "
+            ></div>
+            <div
+              class="absolute w-full h-full flex items-center justify-center"
+            >
+              <svg viewBox="0 0 100 50" class="w-full h-full">
+                <path
+                  id="delivery-path"
+                  d="M5 45 Q 25 20, 50 35 T 95 10"
+                  stroke="#4CAF50"
+                  stroke-width="2"
+                  fill="none"
+                  class="animate-path"
+                ></path>
+                <!-- Origin -->
+                <circle
+                  cx="5"
+                  cy="45"
+                  r="2"
+                  fill="#3E2723"
+                  class="animate-glowing-node"
+                ></circle>
+                <!-- Hops -->
+                <circle
+                  cx="25"
+                  cy="20"
+                  r="2"
+                  fill="#4CAF50"
+                  class="animate-glowing-node"
+                  style="animation-delay: 1s"
+                ></circle>
+                <circle
+                  cx="50"
+                  cy="35"
+                  r="2"
+                  fill="#4CAF50"
+                  class="animate-glowing-node"
+                  style="animation-delay: 2s"
+                ></circle>
+                <circle
+                  cx="75"
+                  cy="22.5"
+                  r="2"
+                  fill="#4CAF50"
+                  class="animate-glowing-node"
+                  style="animation-delay: 3s"
+                ></circle>
+                <!-- Destination -->
+                <circle
+                  cx="95"
+                  cy="10"
+                  r="2"
+                  fill="#4CAF50"
+                  class="animate-glowing-node"
+                  style="animation-delay: 4s"
+                ></circle>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features / Benefits -->
+      <section class="container mx-auto px-4 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div
+            class="bg-white p-6 rounded-2xl shadow-soft card-hover transition duration-300 text-center animate-fade-in"
+            style="animation-delay: 0.2s"
+          >
+            <i
+              data-feather="shuffle"
+              class="text-green-600 mx-auto w-12 h-12 mb-4"
+            ></i>
+            <h3 class="text-xl font-bold mb-2">مطابقة متعددة المراحل</h3>
+            <p class="text-gray-600">
+              نظام ذكي يربط شحنتك بأكثر من مُوصل لإتمام الرحلة بكفاءة.
+            </p>
+          </div>
+          <div
+            class="bg-white p-6 rounded-2xl shadow-soft card-hover transition duration-300 text-center animate-fade-in"
+            style="animation-delay: 0.4s"
+          >
+            <i
+              data-feather="eye"
+              class="text-green-600 mx-auto w-12 h-12 mb-4"
+            ></i>
+            <h3 class="text-xl font-bold mb-2">تتبع لحظي وشفافية</h3>
+            <p class="text-gray-600">
+              راقب حالة شحنتك خطوة بخطوة من خلال التطبيق.
+            </p>
+          </div>
+          <div
+            class="bg-white p-6 rounded-2xl shadow-soft card-hover transition duration-300 text-center animate-fade-in"
+            style="animation-delay: 0.6s"
+          >
+            <i
+              data-feather="shield"
+              class="text-green-600 mx-auto w-12 h-12 mb-4"
+            ></i>
+            <h3 class="text-xl font-bold mb-2">أمان وموثوقية</h3>
+            <p class="text-gray-600">
+              نضمن لك توصيل آمن عبر نظام تقييمات دقيق للمُوصلين.
+            </p>
+          </div>
+          <div
+            class="bg-white p-6 rounded-2xl shadow-soft card-hover transition duration-300 text-center animate-fade-in"
+            style="animation-delay: 0.8s"
+          >
+            <i
+              data-feather="dollar-sign"
+              class="text-green-600 mx-auto w-12 h-12 mb-4"
+            ></i>
+            <h3 class="text-xl font-bold mb-2">أرباح مرنة للمُوصلين</h3>
+            <p class="text-gray-600">
+              اكسب دخلًا إضافيًا من رحلاتك اليومية دون تغيير نمط حياتك.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sustainability Impact -->
+      <section class="bg-green-50 py-16">
+        <div
+          class="container mx-auto px-4 flex flex-col md:flex-row-reverse items-center justify-between space-y-8 md:space-y-0 md:space-x-12 rtl:md:space-x-reverse"
+        >
+          <div class="md:w-1/2 text-center md:text-right animate-fade-in">
+            <h2 class="text-4xl font-bold mb-4">تأثيرنا على الاستدامة</h2>
+            <div class="flex flex-col space-y-6">
+              <div
+                class="flex items-center justify-end md:justify-end space-x-4 rtl:space-x-reverse"
+              >
+                <span
+                  class="text-5xl font-extrabold text-green-700"
+                  id="impact-counter1"
+                  data-target="50"
+                  >0</span
+                >
+                <span class="text-lg text-gray-700">طن CO₂ تم توفيرها 🌍</span>
+              </div>
+              <div
+                class="flex items-center justify-end md:justify-end space-x-4 rtl:space-x-reverse"
+              >
+                <span
+                  class="text-5xl font-extrabold text-green-700"
+                  id="impact-counter2"
+                  data-target="800"
+                  >0</span
+                >
+                <span class="text-lg text-gray-700"
+                  >رحلة فارغة تم تجنبها 🚍</span
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="md:w-1/2 flex items-center justify-center animate-fade-in"
+          >
+            <!-- Placeholder for a visual chart or progress bar -->
+            <div
+              class="w-full h-64 bg-green-200 rounded-xl flex items-end overflow-hidden"
+            >
+              <div
+                id="chart-bar"
+                class="w-full bg-green-600 h-0 transition-all duration-1000 ease-out"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- For Businesses Section -->
+      <section
+        class="container mx-auto px-4 py-16 flex flex-col md:flex-row-reverse items-center justify-between space-y-8 md:space-y-0 md:space-x-12 rtl:md:space-x-reverse"
+      >
+        <div class="md:w-1/2 text-center md:text-right animate-fade-in">
+          <h2 class="text-4xl font-bold mb-4">حلول مخصصة للأعمال والمتاجر</h2>
+          <ul class="text-lg text-gray-700 space-y-2 mb-8">
+            <li>
+              <i
+                data-feather="check"
+                class="text-green-600 inline-block align-middle ml-2 rtl:mr-2"
+              ></i
+              >API للتكامل السهل.
+            </li>
+            <li>
+              <i
+                data-feather="check"
+                class="text-green-600 inline-block align-middle ml-2 rtl:mr-2"
+              ></i
+              >تقارير ولوحة تحكم شاملة.
+            </li>
+            <li>
+              <i
+                data-feather="check"
+                class="text-green-600 inline-block align-middle ml-2 rtl:mr-2"
+              ></i
+              >تخفيض تكاليف التوصيل.
+            </li>
+          </ul>
+          <button
+            class="bg-green-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-green-700 transition duration-300"
+          >
+            اطلب عرض للأعمال
+          </button>
+        </div>
+        <div class="md:w-1/2 flex items-center justify-center animate-fade-in">
+          <div
+            class="w-full h-64 bg-green-100 rounded-xl flex items-center justify-center"
+          >
+            <span class="text-gray-500"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- For Deliverers Section -->
+      <section
+        class="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0 md:space-x-12"
+      >
+        <div class="md:w-1/2 text-center md:text-right animate-fade-in">
+          <h2 class="text-4xl font-bold mb-4">اربح من رحلاتك اليومية</h2>
+          <ul class="text-lg text-gray-700 space-y-2 mb-8">
+            <li>
+              <i
+                data-feather="check"
+                class="text-green-600 inline-block align-middle ml-2 rtl:mr-2"
+              ></i
+              >سجل بياناتك في دقائق.
+            </li>
+            <li>
+              <i
+                data-feather="check"
+                class="text-green-600 inline-block align-middle ml-2 rtl:mr-2"
+              ></i
+              >تحقق من الهوية لتوفير الأمان.
+            </li>
+            <li>
+              <i
+                data-feather="check"
+                class="text-green-600 inline-block align-middle ml-2 rtl:mr-2"
+              ></i
+              >ابدأ التوصيل واكسب المال.
+            </li>
+          </ul>
+          <button
+            class="bg-green-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-green-700 transition duration-300"
+          >
+            انضم الآن
+          </button>
+        </div>
+        <div class="md:w-1/2 flex items-center justify-center animate-fade-in">
+          <div
+            class="w-full h-64 bg-green-100 rounded-xl flex items-center justify-center"
+          >
+            <span class="text-gray-500"> [Image of delivery process] </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section class="bg-green-50 py-16">
+        <div class="container mx-auto px-4">
+          <h2 class="text-4xl font-bold text-center mb-12">آراء عملائنا</h2>
+          <div
+            id="testimonial-container"
+            class="relative overflow-hidden w-full max-w-3xl mx-auto"
+          >
+            <!-- Carousel Slides -->
+            <div class="testimonial-card">
+              <div
+                class="bg-white p-6 rounded-2xl shadow-soft text-center md:text-right"
+              >
+                <p class="text-gray-700 mb-4">
+                  "وفرت 40% من تكاليف التوصيل مع GoLynk! الخدمة سريعة وموثوقة
+                  للغاية."
+                </p>
+                <div
+                  class="flex items-center justify-center md:justify-end space-x-4 rtl:space-x-reverse"
+                >
+                  <img
+                    src="https://placehold.co/60x60/4CAF50/FFFFFF?text=A"
+                    alt="Avatar"
+                    class="rounded-full"
+                  />
+                  <div>
+                    <h4 class="font-semibold">محمد علي</h4>
+                    <p class="text-sm text-gray-500">صاحب متجر إلكتروني</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card hidden">
+              <div
+                class="bg-white p-6 rounded-2xl shadow-soft text-center md:text-right"
+              >
+                <p class="text-gray-700 mb-4">
+                  "تطبيق سهل الاستخدام، وساعدني على كسب دخل إضافي من خلال رحلاتي
+                  اليومية. أنصح به بشدة!"
+                </p>
+                <div
+                  class="flex items-center justify-center md:justify-end space-x-4 rtl:space-x-reverse"
+                >
+                  <img
+                    src="https://placehold.co/60x60/4CAF50/FFFFFF?text=B"
+                    alt="Avatar"
+                    class="rounded-full"
+                  />
+                  <div>
+                    <h4 class="font-semibold">فاطمة أحمد</h4>
+                    <p class="text-sm text-gray-500">مُوصلة</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-card hidden">
+              <div
+                class="bg-white p-6 rounded-2xl shadow-soft text-center md:text-right"
+              >
+                <p class="text-gray-700 mb-4">
+                  "التوصيل السريع والجودة العالية هي ما يميز GoLynk. أصبح شريكنا
+                  المفضل في التوصيل."
+                </p>
+                <div
+                  class="flex items-center justify-center md:justify-end space-x-4 rtl:space-x-reverse"
+                >
+                  <img
+                    src="https://placehold.co/60x60/4CAF50/FFFFFF?text=C"
+                    alt="Avatar"
+                    class="rounded-full"
+                  />
+                  <div>
+                    <h4 class="font-semibold">خالد محمود</h4>
+                    <p class="text-sm text-gray-500">مدير لوجستيات</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Navigation Arrows -->
+            <button
+              id="prevBtn"
+              class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition duration-300"
+            >
+              <i
+                data-feather="chevron-right"
+                class="w-6 h-6 text-green-600"
+              ></i>
+            </button>
+            <button
+              id="nextBtn"
+              class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition duration-300"
+            >
+              <i data-feather="chevron-left" class="w-6 h-6 text-green-600"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Banner -->
+      <section class="container mx-auto px-4 py-16 text-center">
+        <div class="bg-green-600 text-white p-12 rounded-3xl shadow-lg">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            جاهز لتجربة توصيل أسرع وأخضر؟
+          </h2>
+          <button
+            class="bg-white text-green-600 px-10 py-4 rounded-full font-semibold shadow-lg hover:bg-gray-100 transition duration-300"
+          >
+            جرب GoLynk الآن
+          </button>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="container mx-auto px-4 py-16">
+        <h2 class="text-4xl font-bold text-center mb-12">الأسئلة الشائعة</h2>
+        <div id="faq-accordion" class="max-w-3xl mx-auto space-y-4">
+          <div
+            class="bg-white p-6 rounded-2xl shadow-soft cursor-pointer accordion-item"
+          >
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold text-lg">هل الخدمة آمنة؟</h3>
+              <i
+                data-feather="chevron-down"
+                class="text-green-600 transition-transform duration-300"
+              ></i>
+            </div>
+            <p class="text-gray-600 mt-4 hidden accordion-content">
+              نعم، GoLynk يعتمد على نظام تحقق من هوية الموصلين وتقييمات مستمرة
+              لضمان الأمان والموثوقية.
+            </p>
+          </div>
+          <div
+            class="bg-white p-6 rounded-2xl shadow-soft cursor-pointer accordion-item"
+          >
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold text-lg">كيف أعرف أن المُوصل موثوق؟</h3>
+              <i
+                data-feather="chevron-down"
+                class="text-green-600 transition-transform duration-300"
+              ></i>
+            </div>
+            <p class="text-gray-600 mt-4 hidden accordion-content">
+              يتم تقييم كل مُوصل بعد كل رحلة، ويمكنك الاطلاع على تقييماتهم وآراء
+              العملاء السابقين قبل الموافقة على التوصيل.
+            </p>
+          </div>
+          <div
+            class="bg-white p-6 rounded-2xl shadow-soft cursor-pointer accordion-item"
+          >
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold text-lg">هل يمكن للشركات التسجيل؟</h3>
+              <i
+                data-feather="chevron-down"
+                class="text-green-600 transition-transform duration-300"
+              ></i>
+            </div>
+            <p class="text-gray-600 mt-4 hidden accordion-content">
+              نعم، GoLynk يقدم حلولًا متكاملة للشركات والمتاجر الإلكترونية مع
+              لوحة تحكم وتقارير مخصصة.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-green-100 py-12">
+      <div
+        class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-right"
+      >
+        <!-- Logo & Description -->
+        <div>
+          <div
+            class="flex items-center justify-center md:justify-end mb-4 space-x-2 rtl:space-x-reverse"
+          >
+            <span class="text-3xl">🌍</span>
+            <span class="text-2xl font-bold">GoLynk</span>
+          </div>
+          <p class="text-sm">
+            منصة توصيل صديقة للبيئة تربط بين المرسلين والمسافرين.
+          </p>
+        </div>
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-bold text-lg mb-4">روابط سريعة</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:underline">الرئيسية</a></li>
+            <li><a href="#" class="hover:underline">كيف نعمل</a></li>
+            <li><a href="#" class="hover:underline">للأعمال</a></li>
+            <li><a href="#" class="hover:underline">للمُوصلين</a></li>
+            <li><a href="#" class="hover:underline">تواصل معنا</a></li>
+          </ul>
+        </div>
+        <!-- Social Icons -->
+        <div>
+          <h4 class="font-bold text-lg mb-4">تابعنا</h4>
+          <div
+            class="flex justify-center md:justify-end space-x-4 rtl:space-x-reverse text-green-300"
+          >
+            <a href="#" class="hover:text-white transition duration-300"
+              ><i data-feather="instagram" class="w-6 h-6"></i
+            ></a>
+            <a href="#" class="hover:text-white transition duration-300"
+              ><i data-feather="twitter" class="w-6 h-6"></i
+            ></a>
+            <a href="#" class="hover:text-white transition duration-300"
+              ><i data-feather="facebook" class="w-6 h-6"></i
+            ></a>
+            <a href="#" class="hover:text-white transition duration-300"
+              ><i data-feather="linkedin" class="w-6 h-6"></i
+            ></a>
+          </div>
+        </div>
+        <!-- Newsletter -->
+        <div>
+          <h4 class="font-bold text-lg mb-4">اشترك في النشرة</h4>
+          <div class="flex justify-center md:justify-end">
+            <input
+              type="email"
+              placeholder="بريدك الإلكتروني"
+              class="w-full p-2 rounded-r-lg text-right text-gray-800"
+            />
+            <button
+              class="bg-green-600 px-4 py-2 rounded-l-lg hover:bg-green-700 transition duration-300"
+            >
+              اشترك
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="text-center mt-8 text-sm text-green-300 border-t border-green-700 pt-4"
+      >
+        <p>© GoLynk 2025. جميع الحقوق محفوظة.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Feather Icons initialization
+      feather.replace();
+
+      // Navbar behavior on scroll
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("shadow-lg", "bg-white");
+          navbar.classList.remove("bg-[#F5F5DC]/80");
+        } else {
+          navbar.classList.remove("shadow-lg", "bg-white");
+          navbar.classList.add("bg-[#F5F5DC]/80");
+        }
+      });
+
+      // Counter Animation on Scroll
+      const animateCounters = (counters) => {
+        counters.forEach((counter) => {
+          const target = parseInt(counter.dataset.target);
+          let count = 0;
+          const increment = Math.ceil(target / 200);
+
+          const updateCounter = () => {
+            count += increment;
+            if (count < target) {
+              counter.innerText = count.toLocaleString("en-US");
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.innerText = target.toLocaleString("en-US");
+            }
+          };
+          updateCounter();
+        });
+      };
+
+      const counterObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const counters = entry.target.querySelectorAll("[data-target]");
+              animateCounters(counters);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      counterObserver.observe(document.querySelector(".bg-green-50"));
+      counterObserver.observe(
+        document.querySelector(".container.mx-auto.py-16.flex.flex-col")
+      );
+
+      // FAQ Accordion
+      const faqItems = document.querySelectorAll(".accordion-item");
+      faqItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          const content = item.querySelector(".accordion-content");
+          const icon = item.querySelector("i");
+          content.classList.toggle("hidden");
+          icon.classList.toggle("rotate-180");
+        });
+      });
+
+      // Chart animation
+      const chartObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            document.getElementById("chart-bar").style.height = "80%";
+            observer.unobserve(entry.target);
+          }
+        });
+      });
+
+      chartObserver.observe(document.getElementById("chart-bar"));
+
+      // Testimonial Carousel
+      const testimonialContainer = document.getElementById(
+        "testimonial-container"
+      );
+      const cards = testimonialContainer.querySelectorAll(".testimonial-card");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      let currentCard = 0;
+
+      const showCard = (index) => {
+        cards.forEach((card, i) => {
+          card.classList.add("hidden");
+          if (i === index) {
+            card.classList.remove("hidden");
+          }
+        });
+      };
+
+      prevBtn.addEventListener("click", () => {
+        currentCard = (currentCard - 1 + cards.length) % cards.length;
+        showCard(currentCard);
+      });
+
+      nextBtn.addEventListener("click", () => {
+        currentCard = (currentCard + 1) % cards.length;
+        showCard(currentCard);
+      });
+
+      // Auto-play the carousel
+      setInterval(() => {
+        currentCard = (currentCard + 1) % cards.length;
+        showCard(currentCard);
+      }, 5000); // Change card every 5 seconds
+
+      // Initial show
+      showCard(currentCard);
+    </script>
+  </body>
+</html>
