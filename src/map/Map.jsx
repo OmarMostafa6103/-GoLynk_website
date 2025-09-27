@@ -121,7 +121,7 @@ const Map = () => {
         {/* Sidebar panel */}
         <aside className="bg-white rounded-2xl shadow p-4 h-[70vh] lg:h-[calc(100vh-8rem)] overflow-auto order-2 lg:order-1">
           <img
-            src="/In no time-pana.svg"
+            src={import.meta.env.BASE_URL + "In no time-pana.svg"}
             alt="illustration"
             className="w-full h-44 object-contain rounded-xl mb-4"
           />

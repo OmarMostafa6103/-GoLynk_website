@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 const animations = [
-  "/Dropshipping model-rafiki.svg",
-  "/In no time-amico.svg",
-  "/In no time-cuate.svg",
-  "/In no time-pana.svg",
+  import.meta.env.BASE_URL + "Dropshipping model-rafiki.svg",
+  import.meta.env.BASE_URL + "In no time-amico.svg",
+  import.meta.env.BASE_URL + "In no time-cuate.svg",
+  import.meta.env.BASE_URL + "In no time-pana.svg",
 ];
 
 const HeroSection = () => {
