@@ -199,7 +199,10 @@ const ShiplyInfo = () => {
               </div>
               <div className="w-full md:w-1/3 flex items-center justify-center">
                 <img
-                  src={import.meta.env.BASE_URL + "assets/delivery-illustration.svg"}
+                  src={
+                    import.meta.env.BASE_URL +
+                    "assets/delivery-illustration.svg"
+                  }
                   alt="road illustration"
                   className="w-36 md:w-48 h-auto object-contain"
                 />

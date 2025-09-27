@@ -38,7 +38,9 @@ export default function EarnDaily() {
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-emerald-200 to-transparent opacity-12 z-0" />
               <div className="relative z-10 w-full flex items-center justify-center">
                 <img
-                  src={import.meta.env.BASE_URL + "Dropshipping model-rafiki.svg"}
+                  src={
+                    import.meta.env.BASE_URL + "Dropshipping model-rafiki.svg"
+                  }
                   alt="توضيح عملية التوصيل"
                   className="w-full h-auto max-h-[380px] object-contain drop-shadow-xl"
                   loading="lazy"
