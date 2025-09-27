@@ -15,7 +15,7 @@ const Stat = ({ value, label, icon }) => (
 );
 
 const Card = ({ title, desc, icon }) => (
-  <div className="bg-white rounded-xl border border-transparent hover:border-brand-100 shadow-sm hover:shadow-lg p-6 md:p-8 flex-1 min-w-[260px] transform transition-all duration-200 group">
+  <div className="bg-white rounded-xl border border-transparent hover:border-brand-100 shadow-sm hover:shadow-lg p-4 md:p-6 flex-1 min-w-0 transform transition-all duration-200 group">
     <div className="flex flex-col items-center text-center gap-4">
       <div className="w-16 h-16 rounded-full bg-brand-50 flex items-center justify-center text-brand-600">
         {icon}
@@ -33,10 +33,10 @@ const ShiplyInfo = () => {
   const [openGuide, setOpenGuide] = useState(false);
 
   return (
-    <section className="w-full flex flex-col gap-10 px-5">
+  <section className="w-full flex flex-col gap-10 px-4 sm:px-6">
       {/* Top stats row */}
       <div className="bg-emerald-50/80 py-10">
-        <div className="max-w-screen-2xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+  <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
           <Stat
             value="1,200"
             label="شحنة ناجحة"
@@ -117,7 +117,7 @@ const ShiplyInfo = () => {
         </div>
 
         {/* partners row */}
-        <div className="max-w-screen-2xl mx-auto px-6 mt-6 flex items-center justify-center gap-6">
+  <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 mt-6 flex items-center justify-center gap-6 flex-wrap">
           {Array.from({ length: 4 }).map((_, i) => (
             <div
               key={i}
@@ -128,8 +128,8 @@ const ShiplyInfo = () => {
       </div>
 
       {/* Pale band with heading */}
-      <div className="bg-[#F4F1DF] py-12">
-        <div className="max-w-screen-2xl mx-auto px-6 text-center">
+        <div className="bg-[#F4F1DF] py-12">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-4xl font-extrabold text-slate-800">كيف نعمل؟</h2>
         </div>
       </div>
@@ -142,7 +142,7 @@ const ShiplyInfo = () => {
             onClick={() => setOpenGuide(false)}
             aria-hidden
           />
-          <div className="relative bg-white rounded-xl w-11/12 md:w-3/4 lg:w-2/3 max-w-4xl p-6 md:p-10 shadow-xl">
+            <div className="relative bg-white rounded-xl w-11/12 md:w-11/12 lg:w-2/3 max-w-4xl p-4 md:p-8 shadow-xl">
             <button
               onClick={() => setOpenGuide(false)}
               className="absolute top-4 left-4 text-slate-500 hover:text-slate-700"
@@ -201,7 +201,7 @@ const ShiplyInfo = () => {
                 <img
                   src="/assets/delivery-illustration.svg"
                   alt="road illustration"
-                  className="w-48 h-48 object-contain"
+                  className="w-36 md:w-48 h-auto object-contain"
                 />
               </div>
             </div>

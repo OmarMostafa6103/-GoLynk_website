@@ -60,9 +60,9 @@ const HeroSection = () => {
 
   return (
     <section className="pt-2 pb-12 bg-white">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-screen-2xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-screen-2xl mx-auto px-4 sm:px-6">
         <div className="space-y-6 order-2 md:order-1 text-right">
-          <h1 className="text-3xl lg:text-5xl xl:text-6xl font-extrabold leading-tight mb-2">
+          <h1 className="text-2xl md:text-3xl lg:text-5xl xl:text-6xl font-extrabold leading-tight mb-2">
             نوصّلها معاك — أسرع، أوفر، وأخضر 🌍
           </h1>
           <div className="mb-2">
@@ -77,20 +77,20 @@ const HeroSection = () => {
           <div className="flex flex-wrap gap-3 justify-start md:justify-end">
             <a
               href="/map"
-              className="px-7 py-3 rounded-full bg-brand-500 text-white font-bold shadow-brand hover:bg-brand-600 transition"
+              className="px-5 py-2 md:px-7 md:py-3 rounded-full bg-brand-500 text-white font-bold shadow-brand hover:bg-brand-600 transition"
             >
               أرسل شحنة الآن
             </a>
             <a
               href="/orders"
-              className="px-7 py-3 rounded-full border-2 border-brand-500 text-brand-600 font-bold hover:bg-brand-50 transition"
+              className="px-5 py-2 md:px-7 md:py-3 rounded-full border-2 border-brand-500 text-brand-600 font-bold hover:bg-brand-50 transition"
             >
               انضم كموزع
             </a>
           </div>
         </div>
         <div className="order-1 md:order-2 flex items-center justify-center">
-          <div className="relative w-full max-w-[520px] xl:max-w-[620px] aspect-square">
+          <div className="relative w-full max-w-md sm:max-w-lg md:max-w-[520px] xl:max-w-[620px] aspect-square">
             {showPrev && (
               <img
                 src={animations[prev]}
