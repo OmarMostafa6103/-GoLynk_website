@@ -9,7 +9,7 @@ import ThemeProvider from "./theme/ThemeProvider";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route path="/*" element={<App />} />
           <Route path="/auth/*" element={<AuthRoutes />} />
