@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build-and-deploy:
@@ -10,17 +10,27 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
-      - name: Install
-        run: npm ci
+      - name: Install dependencies
+        run: npm ci --prefer-offline --no-audit --progress=false
 
       - name: Build
         run: npm run build
+
+      - name: Show build output
+        run: |
+          echo "-- dist list --"
+          ls -la dist || true
+          echo "-- index.html head --"
+          if [ -f dist/index.html ]; then head -n 40 dist/index.html; else echo 'dist/index.html not found'; fi
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
