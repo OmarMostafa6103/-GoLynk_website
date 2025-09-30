@@ -3,6 +3,28 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      // custom responsive breakpoints (named) matching common device widths
+      screens: {
+        // smallest wearable devices / smartwatches
+        watch: "200px",
+        // phones
+        xs: "320px",
+        // avoid redefining Tailwind's default 'sm' (640px). use 'sm-phone' for smaller phones
+        "sm-phone": "375px",
+        "md-phone": "414px",
+        "lg-phone": "480px",
+        "xl-phone": "600px",
+        // tablets
+        "sm-tablet": "768px",
+        "md-tablet": "834px",
+        "lg-tablet": "1024px",
+        // laptops / desktops
+        "laptop-sm": "1024px",
+        laptop: "1280px",
+        desktop: "1440px",
+        "desktop-lg": "1920px",
+        wide: "2560px",
+      },
       fontFamily: {
         sans: [
           "Tajawal",

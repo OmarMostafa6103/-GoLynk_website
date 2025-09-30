@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
+import MapControls from "./MapControls";
+import CreatePanel from "./CreatePanel";
+import MapPopup from "./MapPopup";
+import {
+  createSenderFromPayload,
+  createTravelerFromPayload,
+} from "./createUtils";
 
 // Minimal-light map style (clean look similar to courier apps)
 const lightMapStyle = [
@@ -56,18 +63,57 @@ const lightMapStyle = [
 
 // أمثلة بيانات بسيطة (يمكن ربطها لاحقًا بالباك إند)
 const travelers = [
-  { id: 1, name: "أحمد", lat: 30.05, lng: 31.24, trip: "القاهرة → الجيزة" },
+  {
+    id: 1,
+    name: "أحمد",
+    lat: 30.05,
+    lng: 31.24,
+    trips: [
+      {
+        id: 101,
+        title: "رحلة: القاهرة → الجيزة",
+        from: "القاهرة",
+        to: "الجيزة",
+        seats: 2,
+      },
+    ],
+  },
   {
     id: 2,
     name: "سارة",
     lat: 30.045,
     lng: 31.23,
-    trip: "القاهرة → الإسكندرية",
+    trips: [
+      {
+        id: 102,
+        title: "رحلة: القاهرة → الإسكندرية",
+        from: "القاهرة",
+        to: "الإسكندرية",
+        seats: 3,
+      },
+    ],
   },
 ];
+
 const senders = [
-  { id: 1, name: "محمد", lat: 30.048, lng: 31.238, item: "شنطة ملابس" },
-  { id: 2, name: "منى", lat: 30.042, lng: 31.232, item: "طرد صغير" },
+  {
+    id: 1,
+    name: "محمد",
+    lat: 30.048,
+    lng: 31.238,
+    orders: [
+      { id: 201, item: "شنطة ملابس", from: "د/م ١", to: "د/م ٢", type: "طرود" },
+    ],
+  },
+  {
+    id: 2,
+    name: "منى",
+    lat: 30.042,
+    lng: 31.232,
+    orders: [
+      { id: 202, item: "طرد صغير", from: "المنصورة", to: "القاهرة", type: "طرود" },
+    ],
+  },
 ];
 
 // Icons (simple colored circles via inline SVG)
@@ -82,8 +128,10 @@ const TRAVELER_ICON = {
 
 const Map = () => {
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyCTJ7-rf3o10eljjYnkEdR9szU-ttHeEIA", // مفتاحك الحقيقي
+    googleMapsApiKey: "AIzaSyCTJ7-rf3o10eljjYnkEdR9szU-ttHeEIA", // keep existing key for compatibility
   });
+
+  const mapRef = useRef(null);
 
   const [userLocation, setUserLocation] = useState({
     lat: 30.0444,
@@ -91,10 +139,16 @@ const Map = () => {
   });
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [mode, setMode] = useState("sender"); // sender | traveler
-  const [pickup, setPickup] = useState("");
-  const [dropoff, setDropoff] = useState("");
 
-  // الحصول على موقع العميل
+  // data lists (can be replaced with backend data)
+  const [travelersList, setTravelersList] = useState(travelers);
+  const [sendersList, setSendersList] = useState(senders);
+
+  const [panelAction, setPanelAction] = useState(null); // 'create-sender' | 'create-traveler' | null
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [expandedIds, setExpandedIds] = useState([]);
+
+  // get user location
   const getUserLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -105,7 +159,7 @@ const Map = () => {
           });
         },
         () => {
-          // إذا رفض المستخدم أو حدث خطأ، يبقى الموقع الافتراضي
+          // ignore error, keep default
         }
       );
     }
@@ -114,6 +168,59 @@ const Map = () => {
   useEffect(() => {
     getUserLocation();
   }, []);
+
+  const onMapLoad = (mapInstance) => {
+    mapRef.current = mapInstance;
+  };
+
+  const centerAndSelect = (lat, lng, info) => {
+    try {
+      if (mapRef.current && lat && lng) {
+        mapRef.current.panTo({ lat, lng });
+        mapRef.current.setZoom && mapRef.current.setZoom(14);
+      }
+    } catch {
+      /* ignore */
+    }
+    setSelectedMarker(info);
+    setPopupOpen(false);
+  };
+
+  const toggleExpand = (id) => {
+    setExpandedIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+  };
+
+  const handleCreateOrder = (payload) => {
+    const s = createSenderFromPayload(payload, userLocation);
+    setSendersList((prev) => [s, ...prev]);
+    setPanelAction(null);
+    centerAndSelect(s.lat, s.lng, {
+      lat: s.lat,
+      lng: s.lng,
+      title: s.name,
+      subtitle: s.orders?.[0]?.item || "",
+    });
+  };
+
+  const handleCreateTrip = (payload) => {
+    const t = createTravelerFromPayload(payload, userLocation);
+    setTravelersList((prev) => [t, ...prev]);
+    setPanelAction(null);
+    centerAndSelect(t.lat, t.lng, {
+      lat: t.lat,
+      lng: t.lng,
+      title: t.name,
+      subtitle: t.trips?.[0]?.title || "",
+    });
+  };
+
+  const openList = () => {
+    setPopupOpen(true);
+  };
+
+  const closeList = () => setPopupOpen(false);
 
   return (
     <div className="pt-24 pb-10 px-5">
@@ -130,24 +237,42 @@ const Map = () => {
             اختر دورك: مرسل يعرض مواقع الطرود، أو مسافر يعرض المسافرين القريبين.
           </p>
 
-          {/* Mode toggle */}
-          <div className="inline-flex rounded-xl bg-gray-100 p-1 mb-4">
-            <button
-              className={`px-4 py-2 rounded-lg font-bold ${
-                mode === "sender" ? "bg-black text-white" : "text-gray-700"
-              }`}
-              onClick={() => setMode("sender")}
-            >
-              مرسل
-            </button>
-            <button
-              className={`px-4 py-2 rounded-lg font-bold ${
-                mode === "traveler" ? "bg-black text-white" : "text-gray-700"
-              }`}
-              onClick={() => setMode("traveler")}
-            >
-              مسافر
-            </button>
+          <div className="mb-4 flex items-center gap-3">
+            <div className="inline-flex rounded-xl bg-gray-100 p-1">
+              <button
+                className={`px-4 py-2 rounded-lg font-bold ${
+                  mode === "sender" ? "bg-black text-white" : "text-gray-700"
+                }`}
+                onClick={() => setMode("sender")}
+              >
+                مرسل
+              </button>
+              <button
+                className={`px-4 py-2 rounded-lg font-bold ${
+                  mode === "traveler" ? "bg-black text-white" : "text-gray-700"
+                }`}
+                onClick={() => setMode("traveler")}
+              >
+                مسافر
+              </button>
+            </div>
+
+            <div className="flex-1">
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={() => setPanelAction("create-traveler")}
+                  className="w-full h-12 bg-white border border-sky-400 text-sky-600 font-bold rounded-full shadow-lg"
+                >
+                  أضف رحلة
+                </button>
+                <button
+                  onClick={() => setPanelAction("create-sender")}
+                  className="w-full h-12 bg-white border border-red-400 text-red-600 font-bold rounded-full shadow-lg"
+                >
+                  أضف طلب
+                </button>
+              </div>
+            </div>
           </div>
 
           {/* Inputs */}
@@ -156,8 +281,6 @@ const Map = () => {
               <span className="text-sky-600">●</span>
               <input
                 type="text"
-                value={pickup}
-                onChange={(e) => setPickup(e.target.value)}
                 placeholder="موقع الالتقاط"
                 className="w-full outline-none text-right"
                 dir="rtl"
@@ -167,29 +290,49 @@ const Map = () => {
               <span className="text-sky-600">■</span>
               <input
                 type="text"
-                value={dropoff}
-                onChange={(e) => setDropoff(e.target.value)}
                 placeholder="موقع التسليم"
                 className="w-full outline-none text-right"
                 dir="rtl"
               />
             </label>
-            <button
-              onClick={getUserLocation}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl py-3"
-            >
-              بحث
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={getUserLocation}
+                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl py-3"
+              >
+                بحث
+              </button>
+              <button
+                onClick={openList}
+                className="w-12 rounded-xl bg-gray-100 flex items-center justify-center"
+                title="قائمة"
+              >
+                ☰
+              </button>
+            </div>
           </div>
         </aside>
 
         {/* Map area */}
-        <div className="rounded-2xl overflow-hidden h-[60vh] lg:h-[calc(100vh-8rem)] order-1 lg:order-2">
+        <div className="relative rounded-2xl overflow-hidden h-[60vh] lg:h-[calc(100vh-8rem)] order-1 lg:order-2">
+          {/* Overlay controls (mobile pills + create buttons) */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="pointer-events-auto">
+              <MapControls
+                mode={mode}
+                onToggleMode={setMode}
+                onCreateSender={() => setPanelAction("create-sender")}
+                onCreateTraveler={() => setPanelAction("create-traveler")}
+              />
+            </div>
+          </div>
+
           {isLoaded ? (
             <GoogleMap
               mapContainerStyle={{ width: "100%", height: "100%" }}
               center={userLocation}
               zoom={13}
+              onLoad={onMapLoad}
               options={{
                 styles: lightMapStyle,
                 disableDefaultUI: true,
@@ -203,7 +346,7 @@ const Map = () => {
               <Marker position={userLocation} label="أنت" />
 
               {mode === "sender"
-                ? senders.map((s) => (
+                ? sendersList.map((s) => (
                     <Marker
                       key={`sender-${s.id}`}
                       position={{ lat: s.lat, lng: s.lng }}
@@ -214,12 +357,12 @@ const Map = () => {
                           lat: s.lat,
                           lng: s.lng,
                           title: s.name,
-                          subtitle: s.item,
+                          subtitle: s.orders?.[0]?.item || "",
                         })
                       }
                     />
                   ))
-                : travelers.map((t) => (
+                : travelersList.map((t) => (
                     <Marker
                       key={`trav-${t.id}`}
                       position={{ lat: t.lat, lng: t.lng }}
@@ -230,7 +373,7 @@ const Map = () => {
                           lat: t.lat,
                           lng: t.lng,
                           title: t.name,
-                          subtitle: t.trip,
+                          subtitle: t.trips?.[0]?.title || "",
                         })
                       }
                     />
@@ -257,6 +400,27 @@ const Map = () => {
             <div className="flex items-center justify-center w-full h-full">
               جاري تحميل الخريطة...
             </div>
+          )}
+
+          {/* Create panel modal */}
+          <CreatePanel
+            action={panelAction}
+            onClose={() => setPanelAction(null)}
+            userLocation={userLocation}
+            handleCreateOrder={handleCreateOrder}
+            handleCreateTrip={handleCreateTrip}
+          />
+
+          {/* Popup / list view */}
+          {popupOpen && (
+            <MapPopup
+              mode={mode}
+              items={mode === "sender" ? sendersList : travelersList}
+              onClose={closeList}
+              centerAndSelect={centerAndSelect}
+              toggleExpand={toggleExpand}
+              expandedIds={expandedIds}
+            />
           )}
         </div>
       </div>

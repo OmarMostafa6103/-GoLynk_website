@@ -66,7 +66,7 @@ const ChatWidget = () => {
     <>
       {/* Chat Icon Floating Button */}
       <button
-        className="fixed bottom-6 right-6 z-50 bg-brand-500 hover:bg-brand-600 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg transition"
+        className="fixed bottom-6 right-6 z-50 bg-brand-600 hover:bg-brand-700 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg transition"
         onClick={() => setOpen(true)}
         aria-label="Open chat"
         style={{ boxShadow: "0 4px 24px rgba(37, 99, 235, 0.25)" }}
@@ -83,7 +83,7 @@ const ChatWidget = () => {
       {open && (
         <div className="fixed bottom-6 right-6 z-50 w-[350px] max-w-full bg-white/95 backdrop-blur rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden animate-slide-up">
           {/* Header */}
-          <div className="flex items-center gap-2 px-4 py-3 bg-brand-500 text-white rounded-t-2xl">
+          <div className="flex items-center gap-2 px-4 py-3 bg-brand-600 text-white rounded-t-2xl">
             <img
               src="https://randomuser.me/api/portraits/women/44.jpg"
               alt="Hanna"
@@ -91,8 +91,8 @@ const ChatWidget = () => {
             />
             <span className="font-bold text-lg">Hanna from Alpega</span>
             <button
-              className="ml-auto flex items-center justify-center w-9 h-9 rounded-full bg-white text-brand-500 hover:bg-brand-50 hover:text-brand-700 shadow transition"
-              style={{ border: "2px solid #e0e1dd" }}
+              className="ml-auto flex items-center justify-center w-9 h-9 rounded-full bg-white text-brand-600 hover:bg-brand-50 hover:text-brand-700 shadow transition"
+              style={{ border: "2px solid #93c5fd" }}
               onClick={() => setOpen(false)}
               aria-label="Close chat"
             >
@@ -131,7 +131,7 @@ const ChatWidget = () => {
                 <div
                   className={
                     msg.isUser
-                      ? "bg-brand-500 text-white rounded-2xl px-4 py-2 max-w-[70%] text-right shadow"
+                      ? "bg-brand-600 text-white rounded-2xl px-4 py-2 max-w-[70%] text-right shadow"
                       : "bg-gray-200 text-gray-900 rounded-2xl px-4 py-2 max-w-[70%] text-left shadow"
                   }
                 >
@@ -151,14 +151,14 @@ const ChatWidget = () => {
           >
             <input
               type="text"
-              className="flex-1 px-3 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-300"
+              className="flex-1 px-3 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-400"
               placeholder="اكتب رسالة"
               value={input}
               onChange={(e) => setInput(e.target.value)}
             />
             <button
               type="submit"
-              className="bg-brand-500 hover:bg-brand-600 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-brand"
+              className="bg-brand-600 hover:bg-brand-700 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-brand"
               aria-label="Send"
             >
               <svg width="20" height="20" fill="none" viewBox="0 0 24 24">

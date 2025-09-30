@@ -29,7 +29,6 @@ const links = [
 const Navbar = () => {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
-  const [dark, setDark] = useState(false);
 
   const isActive = (to) => (pathname === to ? "contained" : "text");
 
@@ -95,39 +94,11 @@ const Navbar = () => {
                 fontWeight: 800,
                 ml: 1.5,
                 borderRadius: 999,
-                backgroundColor: "#415a77",
-                "&:hover": { backgroundColor: "#1b263b" },
+                backgroundColor: "#2563eb",
+                "&:hover": { backgroundColor: "#1d4ed8" },
               }}
             >
               دخول
-            </Button>
-            <Button
-              onClick={() => {
-                setDark((v) => !v);
-                const root = document.documentElement;
-                if (!dark) root.classList.add("dark");
-                else root.classList.remove("dark");
-              }}
-              color="inherit"
-              variant="outlined"
-              sx={{ ml: 1, borderRadius: 999 }}
-            >
-              {dark ? "وضع فاتح" : "وضع داكن"}
-            </Button>
-          </Box>
-          <Box className="hidden md:flex items-center">
-            <Button
-              onClick={() => {
-                const root = document.documentElement;
-                const isDark = root.classList.contains("dark");
-                if (isDark) root.classList.remove("dark");
-                else root.classList.add("dark");
-              }}
-              color="inherit"
-              variant="outlined"
-              sx={{ ml: 1, borderRadius: 999 }}
-            >
-              تبديل الوضع
             </Button>
           </Box>
 

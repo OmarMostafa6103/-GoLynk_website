@@ -10,10 +10,12 @@ const theme = createTheme({
     fontFamily: 'Tajawal, "Segoe UI", Roboto, Arial, sans-serif',
   },
   palette: {
-    primary: { main: "#415a77" }, // CTA
-    secondary: { main: "#778da9" }, // accents
-    background: { default: "#ffffff", paper: "#ffffff" },
-    text: { primary: "#0d1b2a", secondary: "#1b263b" },
+    primary: { main: "#2563eb" },
+    secondary: { main: "#1e293b" },
+    background: {
+      default: "#ffffff",
+      paper: "#ffffff",
+    },
   },
   shape: {
     borderRadius: 14,

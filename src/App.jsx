@@ -8,15 +8,15 @@ import Map from "./map/Map";
 import Chat from "./chat/Chat";
 import Notifications from "./notifications/Notifications";
 import SocialLogin from "./social/SocialLogin";
-import Orders from "./orders/Orders";
+import Requests from "./orders/Requests";
 import Users from "./users/Users";
 
 function App() {
   return (
-    <div className="App flex flex-col min-h-screen bg-white text-gray-900 dark:bg-brand-900 dark:text-gray-100">
+    <div className="App flex flex-col min-h-screen">
       <Navbar />
       <ChatWidget />
-      <div className="flex-1 px-5 pt-[72px]">
+      <div className="flex-1 px-3 sm:px-5 md:px-8 lg:px-12 pt-[72px]">
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<Home />} />
@@ -24,7 +24,7 @@ function App() {
           <Route path="/chat" element={<Chat />} />
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/social-login" element={<SocialLogin />} />
-          <Route path="/orders" element={<Orders />} />
+          <Route path="/orders" element={<Requests />} />
           <Route path="/users" element={<Users />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>

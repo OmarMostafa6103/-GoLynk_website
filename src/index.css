@@ -10,15 +10,19 @@
   body {
     @apply bg-white text-gray-900;
   }
-  .dark body {
-    background-color: theme("colors.brand.900");
-    color: theme("colors.gray.100");
-  }
 }
 
 /* Utilities */
 @layer utilities {
   .container-app {
     @apply max-w-screen-2xl mx-auto px-5;
+  }
+  /* Hide scrollbar but keep scroll functionality */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 }

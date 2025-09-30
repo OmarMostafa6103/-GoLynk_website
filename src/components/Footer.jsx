@@ -267,12 +267,12 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="أدخل بريدك الإلكتروني"
-                className="flex-1 px-3 py-2 rounded-full bg-slate-800 text-sm outline-none focus:ring-2 focus:ring-eco-500"
+                className="flex-1 px-3 py-2 rounded-full bg-slate-800 text-sm outline-none focus:ring-2 focus:ring-brand-500"
                 dir="rtl"
               />
               <button
                 type="submit"
-                className="bg-eco-600 hover:bg-eco-700 text-white px-4 py-2 rounded-full font-bold whitespace-nowrap shadow-brand"
+                className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-full font-bold whitespace-nowrap shadow-brand"
               >
                 اشتراك
               </button>
